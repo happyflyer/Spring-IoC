@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
+  <bean class="org.example.spring_ioc.inherit.ParentClass" abstract="true" id="parentClass">
+    <property name="attribute1" value="value1"/>
+    <property name="attribute2" value="value2"/>
+    <property name="attribute3" value="value3"/>
+  </bean>
+  <bean class="org.example.spring_ioc.inherit.Class1" parent="parentClass" id="class1">
+    <property name="attribute4" value="value4"/>
+    <property name="attribute5" value="value5"/>
+  </bean>
+  <bean class="org.example.spring_ioc.inherit.Class2" parent="parentClass" id="class2">
+    <property name="attribute6" value="value6"/>
+    <property name="attribute7" value="value7"/>
+  </bean>
+</beans>

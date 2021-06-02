@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
+  <!-- 1. 通过默认构造方法实例化Bean -->
+  <bean id="bean1" class="org.example.spring_ioc.instance.Bean1" name="bean1_1,bean1_2"/>
+  <!-- 2. 通过静态工厂方法实例化Bean -->
+  <bean id="bean2" class="org.example.spring_ioc.instance.Bean2Factory" factory-method="getBean2"/>
+  <!-- 3. 通过实例工厂方法实例化Bean -->
+  <bean id="bean3Factory" class="org.example.spring_ioc.instance.Bean3Factory"/>
+  <bean id="bean3" factory-bean="bean3Factory" factory-method="getBean3"/>
+  <!-- 4. 通过Bean的别名实例化Bean -->
+  <alias name="bean1" alias="bean1_3"/>
+</beans>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:c="http://www.springframework.org/schema/c"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
+  <bean id="anotherBean" class="org.example.spring_ioc.injection.AnotherBean"/>
+  <bean id="bean4" class="org.example.spring_ioc.injection.Bean4">
+    <!-- 1. 通过构造方法注入Bean -->
+    <constructor-arg index="0" name="anotherBean" ref="anotherBean"
+                     type="org.example.spring_ioc.injection.AnotherBean"/>
+    <constructor-arg index="1" name="string" value="aaaaaa" type="java.lang.String"/>
+    <!-- 2. 通过set方法注入Bean -->
+    <property name="string1" value="bbbbbb"/>
+    <property name="anotherBean1" ref="anotherBean"/>
+    <!-- 3. List类型注入 -->
+    <property name="stringList">
+      <list>
+        <value>aaaaaa</value>
+        <value>bbbbbb</value>
+      </list>
+    </property>
+    <property name="anotherBeanList">
+      <list>
+        <ref bean="anotherBean"/>
+        <ref bean="anotherBean"/>
+      </list>
+    </property>
+    <!-- 3. Set类型注入 -->
+    <property name="stringSet">
+      <set>
+        <value>aaaaaa</value>
+        <value>bbbbbb</value>
+      </set>
+    </property>
+    <property name="anotherBeanSet">
+      <set>
+        <ref bean="anotherBean"/>
+        <ref bean="anotherBean"/>
+      </set>
+    </property>
+    <!-- 3. Map类型注入 -->
+    <property name="stringMap">
+      <map>
+        <entry key="cccccc" value="dddddd"/>
+        <entry key="eeeeee" value="ffffff"/>
+      </map>
+    </property>
+    <property name="anotherBeanMap">
+      <map>
+        <entry key-ref="anotherBean" value-ref="anotherBean"/>
+      </map>
+    </property>
+    <!-- 3. Properties类型注入 -->
+    <property name="properties">
+      <props>
+        <prop key="aaaaaa">bbbbbb</prop>
+      </props>
+    </property>
+    <!-- 4. null值注入 -->
+    <property name="anotherBean2">
+      <null/>
+    </property>
+    <!-- 5. 注入时创建内部Bean -->
+    <property name="anotherBean3">
+      <bean class="org.example.spring_ioc.injection.AnotherBean"/>
+    </property>
+  </bean>
+  <!-- 构造方法和set方法注入简写 -->
+  <bean id="bean4_1" class="org.example.spring_ioc.injection.Bean4"
+        c:anotherBean-ref="anotherBean" c:string="cccccc"
+        p:anotherBean1-ref="anotherBean" p:string1="dddddd"/>
+</beans>

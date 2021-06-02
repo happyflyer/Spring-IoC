@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
+  <!-- bean作用域 -->
+  <bean id="anotherBean" class="org.example.spring_ioc.scope.AnotherBean" scope="prototype"/>
+  <bean id="bean5" class="org.example.spring_ioc.scope.Bean5" scope="prototype">
+    <property name="anotherBean" ref="anotherBean"/>
+  </bean>
+  <!-- 方法注入 -->
+  <bean id="bean6" class="org.example.spring_ioc.scope.Bean6">
+    <lookup-method name="createAnotherBean" bean="anotherBean"/>
+  </bean>
+</beans>
